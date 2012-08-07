@@ -11,7 +11,14 @@
     <maven.scala.version>2.9.2</maven.scala.version>
   </properties>
 
-  <repositories>
+    <scm>
+        <connection>scm:git:git@github.com:ivanfrain/maven-scala-skeleton.git</connection>
+        <url>https://github.com/ivanfrain/maven-scala-skeleton</url>
+        <developerConnection>scm:git:git@github.com:ivanfrain/maven-sscala-skeleton.git</developerConnection>
+    </scm>
+
+
+    <repositories>
         <repository>
             <id>scala-tools.org</id>
             <name>Scala-tools Maven2 Repository</name>
@@ -106,8 +113,7 @@
             </exclusions>
         </dependency>
 
-
-  </dependencies>
+      </dependencies>
 
 
 
@@ -174,7 +180,40 @@
                 </configuration>
             </plugin>
 
-        </plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>2.3</version>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.kohsuke</groupId>
+                        <artifactId>doxia-module-markdown</artifactId>
+                        <version>1.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+          <plugin>
+                  <groupId>com.github.github</groupId>
+                  <artifactId>site-maven-plugin</artifactId>
+                  <version>0.5</version>
+
+              <executions>
+                      <execution>
+                          <goals>
+                              <goal>site</goal>
+                          </goals>
+                          <phase>site-deploy</phase>
+                          <configuration>
+                                  <path>${project.version}</path>
+                              <merge>true</merge>
+                          </configuration>
+                      </execution>
+                  </executions>
+              </plugin>
+
+      </plugins>
 
 
     
